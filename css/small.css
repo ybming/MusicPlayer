@@ -1,0 +1,476 @@
+@charset "utf-8";
+
+@media screen and (max-width:900px) {
+	.header {
+		display: none
+	}
+
+	#vd {
+		opacity: .5
+	}
+
+	.btn {
+		backdrop-filter: unset
+	}
+
+	.la,.lb,.li {
+		display: none!important
+	}
+
+	.lb {
+		width: 22px!important;
+		height: 22px!important;
+		margin: 0 8px!important;
+		padding: 0!important
+	}
+
+	.sheet-title-bar {
+		top: unset;
+		position: unset;
+		text-align: center;
+		line-height: 28px;
+		height: 28px
+	}
+
+	.login-btn {
+		padding: 2px 2px!important;
+		border-radius: 4px!important;
+		margin: 0 2px!important;
+		display: inline-block!important;
+		float: unset!important;
+		background: rgba(235,235,235,.05)!important
+	}
+
+	.custom {
+		padding: 0 8px!important;
+		width: max-content!important;
+		background: rgba(255,255,255,.05)!important;
+		height: 18px!important;
+		border-radius: 4px!important
+	}
+
+	.center {
+		top: 0;
+		bottom: 80px
+	}
+
+	.fotinfo {
+		display: none
+	}
+
+	.fu1 {
+		display: none
+	}
+
+	.white_content {
+		display: none!important
+	}
+
+	.btn[data-action=player] {
+		display: flex
+	}
+
+	.btn-bar {
+		height: 35px;
+		right: 0;
+		z-index: 999
+	}
+
+	.btn-box {
+		background-color: rgb(255,255,255,.1);
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		backdrop-filter: blur(12px)
+	}
+
+	.active {
+		background: rgb(255,255,255,.2)!important
+	}
+
+	.gdid {
+		color: #fff;
+		font-size: 12px;
+		text-align: center;
+		line-height: 35px;
+		float: left;
+		margin-left: -5px;
+		width: 20%
+	}
+
+	.btn {
+		margin: 0;
+		padding: 0;
+		width: 25%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		float: left;
+		border: none;
+		text-align: center;
+		line-height: 35px;
+		color: #fff;
+		border-radius: 0;
+		background: unset
+	}
+
+	.login-btn {
+		background: unset
+	}
+
+	.btn:hover {
+		border: none;
+		color: #fff
+	}
+
+	.btn-box .active:after {
+		content: '';
+		display: block;
+		margin-top: -3px;
+		border-radius: 0
+	}
+
+	.uidbutton:hover {
+		border: 0!important
+	}
+
+	.data-box {
+		top: 60px
+	}
+
+	#sheet {
+		top: 6px
+	}
+
+	.data-area {
+		top: 34px
+	}
+
+	.data-area {
+		right: 0
+	}
+
+	.list-menu {
+		display: none!important
+	}
+
+	.sheetlistname {
+		margin-top: -50px
+	}
+
+	.music-name-cult {
+		padding-right: 0!important
+	}
+
+	.music-album {
+		margin-right: 30px
+	}
+
+	.list-mobile-menu {
+		position: absolute;
+                display:block;
+		width: 22px;
+		height: 30px;
+		background-image: url(../images/player.png);
+		background-position: -30px -365px;
+		right: 0;
+		top: 50%;
+                filter: brightness(1.2);
+		-webkit-transform: translateY(-50%);
+		-moz-transform: translateY(-50%);
+		-ms-transform: translateY(-50%);
+		-o-transform: translateY(-50%);
+		transform: translateY(-50%);
+		z-index: 2
+	}
+	.list-head {
+		max-width: calc(100% - 20px)
+	}
+
+	.con-btn {
+		width: 120px
+	}
+
+	.progress {
+		width: auto;
+		margin-left: 134px;
+		margin-right: 20px;
+		height: 100%;
+		position: relative
+	}
+
+	.vol {
+		display: none
+	}
+
+	.player {
+		display: none;
+		width: 100%
+	}
+
+	.lyric-name {
+		margin-top: 10px
+	}
+
+	.cover {
+		width: 100px;
+		height: 100px;
+		margin-top: 45px
+	}
+
+	.mc {
+		width: 100%;
+		height: 100%;
+		margin-top: 0
+	}
+
+	.mc:after {
+		width: 170%;
+		height: 170%
+	}
+
+	.music-cover {
+		width: 90px;
+		height: 90px;
+		border: 10px solid rgba(255,255,255,.1)
+	}
+
+	.full-player .music-cover {
+		width: 90px;
+		height: 90px
+	}
+
+	.full-player .lyric-name {
+		margin-top: 10px
+	}
+
+	.lyric {
+		top: 160px;
+		padding: 10px 0
+	}
+
+	#lyric .lplaying {
+		font-size: 14px!important;
+		letter-spacing: 0!important
+	}
+
+	#lyric>li {
+		line-height: 20px;
+		font-size: 12px
+	}
+
+	.full-player .lplaying>.tlyric {
+		letter-spacing: 0
+	}
+
+	#lyric>li .tlyric {
+		font-size: 12px
+	}
+
+	.sheet-item {
+		width: calc(100% / 10 - 16px)
+	}
+
+	.wallpaper-container {
+		width: 90%;
+		border-radius: 10px 0 10px 10px
+	}
+
+	.wallpaper-container:before {
+		border-radius: 0 0 10px 10px
+	}
+
+	.wallbtn {
+		width: 100%
+	}
+
+	.disabled:before {
+		font-size: .55rem
+	}
+
+	.cancel-btn,.close-btn {
+		margin: 4px 4px;
+		padding: 4px 8px
+	}
+
+	.wallinfo {
+		padding: 4px 10px;
+		margin: 4px 0
+	}
+
+	.footer {
+		bottom: 0
+	}
+
+	.btn-bar,.container,.data-area,.footer .container,.player {
+		background: unset;
+		border-radius: 0
+	}
+
+	.active:before {
+		background: rgba(255,255,255,.3);
+		backdrop-filter: blur(2px)
+	}
+}
+
+@media screen and (max-width:700px) {
+	.sheetlistname {
+		left: 0;
+		flex-wrap: wrap;
+		justify-content: center;
+		overflow: hidden;
+		padding: 0;
+		width: 100%
+	}
+
+	.listname {
+		margin: 0 4px;
+		width: 180px;
+		text-align: center;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis
+	}
+
+	.sheetplay {
+		margin: 0 5px
+	}
+
+	.sheet-item {
+		width: calc(100% / 7 - 16px)
+	}
+}
+
+@media screen and (max-width:600px) {
+	.sheet-item {
+		width: calc(100% / 6 - 16px)
+	}
+
+	.lyric-name {
+		font-size: 14px;
+		line-height: 18px
+	}
+
+	#search-area {
+		padding: 25px 8px
+	}
+
+	.layui-layer {
+		width: 350px
+	}
+}
+
+@media screen and (max-width:620px) {
+	.music-album {
+		display: none
+	}
+
+	.auth-name {
+		width: 32%;
+                padding-right:22px;
+		box-sizing: border-box
+	}
+
+	.music-name {
+		margin-right: 32%
+	}
+
+	.linkbutton {
+		display: none
+	}
+
+	body,html {
+		background-color: #000
+	}
+}
+
+@media screen and (max-width:540px) {
+	.sheet-item {
+		width: calc(100% / 6 - 10px);
+		margin: 5px 5px
+	}
+
+	.data-box {
+		left: 5px;
+		right: 5px
+	}
+
+	.sheet-name {
+		max-width: 100%
+	}
+
+	.footer {
+		height: 80px
+	}
+
+	.footer .container {
+		display: flex;
+		flex-direction: column-reverse
+	}
+
+	.con-btn,.progress {
+		height: 50px;
+		width: 100%
+	}
+
+	.con-btn {
+		margin: 0;        
+                margin-bottom: 6px;
+		width: 100%;
+		transform: scale(.9);
+	}
+
+	.progress {
+		height: 30px;
+		margin: 0
+	}
+
+	.progress-box {
+		height: 30px;
+		top: 0;
+		right: 50px;
+		margin: 0 10px
+	}
+
+	.btn-order {
+		right: -10px
+	}
+	.btn-prev{
+		left:20%;
+	}
+    .btn-next {
+		right:20%;
+	}
+	.btn-play {
+		left:50%;
+	}
+	.vol {
+		display: block;
+		width: 50%;
+		height: 50px;
+		position: absolute;
+		transform: scale(.9);
+		left:-26px;
+                margin-bottom: 6px;
+	}
+    .volume {
+	    display:none;	
+	}
+	.mkpgb-ttime,.mkpgb-ztime {
+		margin-top: 7px;
+                font-size:12px;
+	}
+
+	.list-head {
+		max-width: calc(100% - 12px)
+	}
+}
+
+@media screen and (max-width:350px) {
+	.sheet-item {
+		width: 50%
+	}
+}
