@@ -225,15 +225,13 @@ async function handleApi(request: NextRequest): Promise<NextResponse> {
       case 'playlist': {
         const id = merged.get('id') || '';
         if (source === 'netease') {
+          // 返回原始网易云格式（前端 ajaxPlayList 期望 playlist.tracks）
           const json = await neteaseForward(
             'http://music.163.com/api/v3/playlist/detail',
             'POST',
             { id, n: 1000 },
           );
-          const data = JSON.parse(json);
-          const tracks = data?.playlist?.tracks || [];
-          const formatted = tracks.map(formatNetease);
-          rawData = JSON.stringify(formatted);
+          rawData = json;  // 直接返回原始数据，不做格式化
         } else if (source === 'tencent') {
           const json = await httpFetch(
             `https://c.y.qq.com/v8/fcg-bin/fcg_v8_playlist_cp.fcg?id=${id}&format=json&newsong=1&platform=jqspaframe.json`,

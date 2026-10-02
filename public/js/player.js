@@ -1,4 +1,4 @@
-/**************************************************
+﻿/**************************************************
  * MKOnlinePlayer v2.41
  * 播放器主功能模块
  * 编写：mengkun(https://mkblog.cn)
@@ -492,17 +492,4 @@ document.onkeydown = function showkey(e) {
 };
 
 //倍速
-document.addEventListener('DOMContentLoaded', function() {
-   var selectJ = document.getElementById('select');
-   var audioJ = document.getElementById('audios');
-
-   // 为选择框添加 change 事件监听器
-   selectJ.addEventListener('change', function() {
-       audioJ.playbackRate = this.value;
-   });
-
-    // 为音频元素添加 play 事件监听器
-    audioJ.addEventListener('play', function() {
-        audioJ.playbackRate = selectJ.value;
-    });
-});
+// 倍速调整 UI 已移除（HTML select#select 已删除，跳过初始化）
