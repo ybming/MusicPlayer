@@ -319,7 +319,7 @@ function netease(){
     window.open('https://music.163.com/')
 }
 function blog(){
-    window.open('https://blog.mmp.cc/')
+    window.open('https://coaar.com/')
 };
 function wall(){
     window.open('/');
