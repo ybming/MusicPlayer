@@ -240,8 +240,8 @@ $(document).ready(function() {
 // ========== 背景壁纸配置（在这里加你自己的背景） ==========
 // 往 images/bg/ 丢图片后，把文件名（含后缀）加到这个数组里即可
 var wallpaperList = [
-    '0.svg', '1.svg', '2.svg', '3.svg', '4.svg', '5.svg', '6.svg', 'bg1.jpg', 'bg2.jpg','Z.jpg'
-    // 示例：'myphoto.jpg', 'wallpaper.png', 'scenery.webp'
+    '0.svg', '1.svg', '2.svg', '3.svg', '4.svg', '5.svg', '6.svg',
+    'Z.jpg', 'bg1.jpg', 'bg2.jpg'
 ];
 
 // 设置背景图
