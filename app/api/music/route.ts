@@ -126,12 +126,63 @@ function formatNetease(data: any): any {
   };
 }
 
-// ========== Main Handler ==========
-export async function GET(request: NextRequest) {
+// ========== 参数合并（GET query + POST body） ==========
+async function parseParams(request: NextRequest): Promise<URLSearchParams> {
   const { searchParams } = new URL(request.url);
-  const types = searchParams.get('types') || '';
-  const source = searchParams.get('source') || 'netease';
-  const callback = searchParams.get('callback') || '';
+  const merged = new URLSearchParams();
+  // 先把 query string 加进来
+  searchParams.forEach((v, k) => merged.set(k, v));
+  // POST body（jQuery $.ajax 默认 application/x-www-form-urlencoded）
+  if (request.method === 'POST') {
+    try {
+      const ct = request.headers.get('content-type') || '';
+      if (ct.includes('application/json')) {
+        const json = await request.json();
+        Object.entries(json).forEach(([k, v]) => merged.set(k, String(v)));
+      } else {
+        const text = await request.text();
+        // 需要 reset body 让其他地方还能读？Route Handler 里 request 是只读的，这里读了就好
+        // 但 NextRequest 的 body 是 ReadableStream，text() 读了之后就没了
+        // 所以换个方式：用 request.formData() 或自己 parse
+      }
+    } catch {}
+  }
+  return merged;
+}
+
+// 简单 parse form-urlencoded，支持 & 和 URL 编码
+function parseFormUrlencoded(body: string): Record<string, string> {
+  const result: Record<string, string> = {};
+  body.split('&').forEach((pair) => {
+    if (!pair) return;
+    const idx = pair.indexOf('=');
+    if (idx === -1) return;
+    const k = decodeURIComponent(pair.slice(0, idx).replace(/\+/g, ' '));
+    const v = decodeURIComponent(pair.slice(idx + 1).replace(/\+/g, ' '));
+    result[k] = v;
+  });
+  return result;
+}
+
+// ========== Main Handler ==========
+async function handleApi(request: NextRequest): Promise<NextResponse> {
+  const { searchParams } = new URL(request.url);
+  // 合并 query + POST body
+  const merged = new URLSearchParams();
+  searchParams.forEach((v, k) => merged.set(k, v));
+  if (request.method === 'POST') {
+    try {
+      const text = await request.text();
+      if (text) {
+        const bodyParams = parseFormUrlencoded(text);
+        Object.entries(bodyParams).forEach(([k, v]) => merged.set(k, v));
+      }
+    } catch {}
+  }
+
+  const types = merged.get('types') || '';
+  const source = merged.get('source') || 'netease';
+  const callback = merged.get('callback') || '';
 
   let result: any = null;
   let rawData: string = '';
@@ -139,9 +190,9 @@ export async function GET(request: NextRequest) {
   try {
     switch (types) {
       case 'search': {
-        const name = searchParams.get('name') || '';
-        const limit = parseInt(searchParams.get('count') || '20');
-        const page = parseInt(searchParams.get('pages') || '1');
+        const name = merged.get('name') || '';
+        const limit = parseInt(merged.get('count') || '20');
+        const page = parseInt(merged.get('pages') || '1');
 
         if (source === 'netease') {
           const json = await neteaseForward(
@@ -172,7 +223,7 @@ export async function GET(request: NextRequest) {
       }
 
       case 'playlist': {
-        const id = searchParams.get('id') || '';
+        const id = merged.get('id') || '';
         if (source === 'netease') {
           const json = await neteaseForward(
             'http://music.163.com/api/v3/playlist/detail',
@@ -196,7 +247,7 @@ export async function GET(request: NextRequest) {
       }
 
       case 'url': {
-        const id = searchParams.get('id') || '';
+        const id = merged.get('id') || '';
         if (source === 'netease') {
           const json = await neteaseForward(
             'http://music.163.com/api/song/enhance/player/url',
@@ -215,7 +266,7 @@ export async function GET(request: NextRequest) {
       }
 
       case 'lyric': {
-        const id = searchParams.get('id') || '';
+        const id = merged.get('id') || '';
         if (source === 'netease') {
           const json = await neteaseForward(
             'http://music.163.com/api/song/lyric',
@@ -233,7 +284,7 @@ export async function GET(request: NextRequest) {
       }
 
       case 'pic': {
-        const id = searchParams.get('id') || '';
+        const id = merged.get('id') || '';
         if (source === 'netease') {
           const pickkey = neteasePickkey(id);
           result = {
@@ -245,7 +296,7 @@ export async function GET(request: NextRequest) {
       }
 
       case 'userlist': {
-        const uid = searchParams.get('uid') || '';
+        const uid = merged.get('uid') || '';
         const json = await httpFetch(
           `http://music.163.com/api/user/playlist/?offset=0&limit=1001&uid=${uid}`,
           'GET',
@@ -283,6 +334,14 @@ export async function GET(request: NextRequest) {
       'Access-Control-Allow-Headers': '*',
     },
   });
+}
+
+export async function GET(request: NextRequest) {
+  return handleApi(request);
+}
+
+export async function POST(request: NextRequest) {
+  return handleApi(request);
 }
 
 export async function OPTIONS() {
